@@ -2,14 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
-import geopandas as gpd
 import plotly.express as px
 import plotly.graph_objects as go
 import math
 import sys
 import os
-import movingpandas as mpd
-from shapely.geometry import LineString, Point
 import time
 
 pd.set_option('display.max_rows', None)
@@ -172,53 +169,6 @@ def get_specific_lap(laps_df, lap_number=None, lap_placement=None):
     # specific_lap_gdf, specific_line_gdf = create_geodataframe(specific_lap_df)
 
     return specific_lap_df
-
-
-def convert_points_to_linestring(gdf):
-    ### Depricated function as we didn't find any use for it, and it caused errors in combination with plotly
-    line = LineString(gdf.geometry.tolist())
-    line_gdf = gpd.GeoDataFrame(geometry=[line], crs=gdf.crs).loc[0]
-    return line_gdf
-
-
-def create_geodataframe(df):
-    ### Depricated function as we didn't find any use for it, and it caused errors in combination with plotly
-    gdf = gpd.GeoDataFrame(
-        df,
-        geometry=gpd.points_from_xy(df['Longitude'], df['Latitude']),
-        crs="EPSG:4326"  
-    )
-    line_gdf = convert_points_to_linestring(gdf)
-    return gdf, line_gdf
-
-
-def points_to_lines(df, groupby_column):
-    """
-    Convert points in a Pandas DataFrame to LineString geometries grouped by a specified column.
-
-    Parameters:
-    - df (DataFrame): Pandas DataFrame containing point coordinates.
-    - groupby_column (str): Name of the column to group points by.
-
-    Returns:
-    - GeoDataFrame: GeoDataFrame containing LineString geometries.
-    """
-    # Groups points by specified column and aggregates into LineString geometries
-    lines = df.groupby(groupby_column)['geometry'].apply(lambda x: LineString(x.tolist()) if x.size > 1 else None)
-    lines_gdf = gpd.GeoDataFrame(geometry=lines.values, index=lines.index, crs=df.crs)
-    
-    return lines_gdf
-
-def lines_to_trajectories(lines_gdf):
-    trajectories = []
-    for idx, row in lines_gdf.iterrows():
-        trajectory = mpd.Trajectory(row['geometry'], idx)
-        trajectories.append(trajectory)
-    
-    traj_collection = mpd.TrajectoryCollection(trajectories)
-    
-    return traj_collection
-
 
     
 if __name__ == "__main__":

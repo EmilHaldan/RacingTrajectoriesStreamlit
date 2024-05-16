@@ -4,7 +4,6 @@ import sys
 import os
 import time
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from shapely.geometry import LineString, Point
 import kaleido
 from PIL import Image
 import plotly.io as pio

@@ -159,7 +159,6 @@ pooch==1.8.1
 prometheus_client==0.20.0
 prompt-toolkit==3.0.43
 psutil==5.9.8
-psycopg2==2.9.9
 ptyprocess==0.7.0
 PuLP==2.8.0
 pure-eval==0.2.2
