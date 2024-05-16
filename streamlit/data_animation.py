@@ -9,7 +9,6 @@ from PIL import Image
 import plotly.io as pio
 from multiprocessing import Pool, cpu_count
 
-sys.path.append("../")
 
 from data_loader import transform_coordinates, load_track_data, load_race_data, reduce_dataframe
 from prepare_laps import prepare_laps_data, get_specific_lap

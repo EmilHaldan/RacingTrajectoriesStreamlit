@@ -11,7 +11,6 @@ import time
 
 pd.set_option('display.max_rows', None)
 
-sys.path.append("../")
 from data_loader import transform_coordinates, load_track_data, load_race_data
 
 
@@ -19,7 +18,7 @@ def merge_lap_data(name):
 
     # find all the files that contain the name
     highest_laps_completed = 0
-    files = [x for x in os.listdir("../Data/Telemetry_data") if name in x]
+    files = [x for x in os.listdir("Data/Telemetry_data") if name in x]
     all_laps_df = []
     idx = 0
     for file in files:
@@ -164,9 +163,6 @@ def get_specific_lap(laps_df, lap_number=None, lap_placement=None):
         specific_lap_df = laps_df[laps_df["Lap Placement"] == lap_placement]
     else: 
         raise ValueError("Please provide either lap_number or lap_placement")
-
-    ### Depricated line of code as we didn't find any use for it, and it caused errors in combination with plotly
-    # specific_lap_gdf, specific_line_gdf = create_geodataframe(specific_lap_df)
 
     return specific_lap_df
 

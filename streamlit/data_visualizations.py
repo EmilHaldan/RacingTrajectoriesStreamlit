@@ -12,9 +12,8 @@ import sys
 import time
 import os 
 
-sys.path.append("../")
 from data_loader import transform_coordinates, load_track_data, load_race_data
-from prepare_laps import prepare_laps_data, get_specific_lap, create_geodataframe, extract_key_points
+from prepare_laps import prepare_laps_data, get_specific_lap,  extract_key_points
 
 
 def plot_track(cur_lap_df, opp_lap_df, 

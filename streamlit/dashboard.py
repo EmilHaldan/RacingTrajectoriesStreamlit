@@ -5,7 +5,6 @@ import sys
 import os 
 import math
 from datetime import datetime, timedelta
-sys.path.append("../")
 from data_loader import transform_coordinates, load_track_data, load_race_data
 from prepare_laps import prepare_laps_data, re_prepare_laps_data, get_specific_lap
 from data_visualizations import plot_track
@@ -165,8 +164,11 @@ def page3():
     player_name = st.session_state['name']
     opp_name = st.session_state['name_opponent']
 
-    gif_path = f"Gifs/corner_animation_1_{player_name}_{opp_name}.gif"
-    st.image(gif_path, use_column_width=True)
+    if opp_name == player_name:
+        st.write("Please select a different opponent")
+    else:
+        gif_path = f"Gifs/corner_animation_1_{player_name}_{opp_name}.gif"
+        st.image(gif_path, use_column_width=True)
 
 
 def page4():
@@ -175,9 +177,11 @@ def page4():
 
     player_name = st.session_state['name']
     opp_name = st.session_state['name_opponent']
-
-    gif_path = f"Gifs/corner_animation_2_{player_name}_{opp_name}.gif"
-    st.image(gif_path, use_column_width=True)
+    if opp_name == player_name:
+        st.write("Please select a different opponent")
+    else:
+        gif_path = f"Gifs/corner_animation_2_{player_name}_{opp_name}.gif"
+        st.image(gif_path, use_column_width=True)
 
 
 def page5():
@@ -186,9 +190,11 @@ def page5():
 
     player_name = st.session_state['name']
     opp_name = st.session_state['name_opponent']
-
-    gif_path = f"Gifs/corner_animation_3_{player_name}_{opp_name}.gif"
-    st.image(gif_path, use_column_width=True)
+    if opp_name == player_name:
+        st.write("Please select a different opponent")
+    else:
+        gif_path = f"Gifs/corner_animation_3_{player_name}_{opp_name}.gif"
+        st.image(gif_path, use_column_width=True)
 
 
 def page6():
