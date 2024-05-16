@@ -63,8 +63,6 @@ fuzzywuzzy==0.18.0
 GeoAlchemy2==0.14.4
 geocube==0.4.2
 geographiclib==2.0
-geopandas==0.14.3
-geopy==2.4.1
 giddy==2.3.5
 greenlet==3.0.3
 h11==0.14.0
@@ -138,7 +136,6 @@ notebook_shim==0.2.4
 numba==0.59.0
 numexpr==2.9.0
 numpy==1.23.4
-odc-geo==0.4.3
 osmnet==0.1.7
 osmnx==1.9.1
 overrides==7.7.0
@@ -264,7 +261,3 @@ xyzservices==2023.10.1
 zict==3.0.0
 zipp==3.17.0
 streamlit==1.32.2
-movingpandas==0.17.2
-imageio==2.34.1
-selenium==4.20.0
-kaleido==0.1.0post1
