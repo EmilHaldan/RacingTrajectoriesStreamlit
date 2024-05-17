@@ -110,6 +110,7 @@ def render_corner(filtered_cur_df, filtered_opp_df, left_side_df, right_side_df,
         args = [(filtered_cur_df, filtered_opp_df, size, player_name, opponent_name, i,
                         left_side_df, right_side_df, zoom, center_dict, width, height, 
                         bearing, x_time_lim, corner) for i in range(frames)]
+                        
         results = pool.starmap(create_single_frame, args)
         
         for i, image in enumerate(results):
