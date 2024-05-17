@@ -12,8 +12,9 @@ import sys
 import time
 import os 
 
+sys.path.append("../")
 from data_loader import transform_coordinates, load_track_data, load_race_data
-from prepare_laps import prepare_laps_data, get_specific_lap,  extract_key_points
+from prepare_laps import prepare_laps_data, get_specific_lap, create_geodataframe, extract_key_points
 
 
 def plot_track(cur_lap_df, opp_lap_df, 
@@ -168,8 +169,8 @@ def plot_track(cur_lap_df, opp_lap_df,
             lat=opp_max_speed_points['Latitude'],
             lon=opp_max_speed_points['Longitude'],
             mode='markers',
-            marker=dict(size=int(size*2.5) ,color="Orange", symbol='circle'), # Doesn't work with 'x', 'square', 'diamond', 'cross', 'triangle', 'triangle-up', 'triangle-down', 'octagon', 'star', 'hexagon', 'diamond-tall', 'hourglass', 'bowtie', 'circle-open', 'circle-dot', 'circle-open-dot'
-            text = opp_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
+            marker=dict(size=int(size*2.5) ,color="#be3f02", symbol='circle'), # Doesn't work with 'x', 'square', 'diamond', 'cross', 'triangle', 'triangle-up', 'triangle-down', 'octagon', 'star', 'hexagon', 'diamond-tall', 'hourglass', 'bowtie', 'circle-open', 'circle-dot', 'circle-open-dot'
+            text = opp_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),            
             name= opponent_name,
             showlegend=False
         )
@@ -181,7 +182,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lat=opp_min_speed_points['Latitude'],
             lon=opp_min_speed_points['Longitude'],
             mode='markers',
-            marker=dict(size=int(size*2.5) ,color="Orange", symbol='circle'),
+            marker=dict(size=int(size*2.5) ,color="#fdbf86", symbol='circle'),
             text = opp_min_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= opponent_name,
             showlegend=False
@@ -194,7 +195,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lat=cur_max_speed_points['Latitude'],
             lon=cur_max_speed_points['Longitude'],
             mode='markers',
-            marker=dict(size=int(size*2.5) ,color="Green", symbol='circle'), 
+            marker=dict(size=int(size*2.5) ,color="#187f3e", symbol='circle'), 
             text = cur_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= player_name,
             showlegend=False
@@ -207,7 +208,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lat=cur_min_speed_points['Latitude'],
             lon=cur_min_speed_points['Longitude'],
             mode='markers',
-            marker=dict(size=int(size*2.5) ,color="Green" , symbol='circle'),
+            marker=dict(size=int(size*2.5) ,color="#b4e1ad" , symbol='circle'),
             text = cur_min_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= player_name,
             showlegend=False
@@ -255,7 +256,7 @@ def plot_speed(df_player, df_opponent, player_name, opponent_name, x_lim, figsiz
     plt.style.use('dark_background')
     
     # Create a new figure with a fixed size
-    fig, ax = plt.subplots(figsize=(figsize_width, 2.5))  # Width is dynamic based on input, height is fixed
+    fig, ax = plt.subplots(figsize=(figsize_width, 1.8))  # Width is dynamic based on input, height is fixed
     
     # Plotting the data
     ax.plot(df_player['Local_Timestamp'], df_player['Speed (Km/h)'], color='#289603', label=f'{player_name}')
