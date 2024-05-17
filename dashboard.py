@@ -164,11 +164,38 @@ def page3():
     player_name = st.session_state['name']
     opp_name = st.session_state['name_opponent']
 
+    # if opp_name == player_name:
+    #     st.write("Please select a different opponent")
+    # else:
+    #     gif_path = f"Gifs/corner_animation_1_{player_name}_{opp_name}.gif"
+    #     st.image(gif_path, use_column_width=True)
+
+
+    # player_name = st.session_state.get('name', '')
+    # opp_name = st.session_state.get('name_opponent', '')
+
     if opp_name == player_name:
         st.write("Please select a different opponent")
     else:
-        gif_path = f"Gifs/corner_animation_1_{player_name}_{opp_name}.gif"
-        st.image(gif_path, use_column_width=True)
+        # Layout for button and slider
+        col1, col2 = st.columns([1, 15])
+
+        # Slider for choosing specific images (assuming images are indexed)
+        frame_index = col2.slider("Choose a frame", min_value=0, max_value=5, value=0)
+
+        # Display image based on slider's value
+        # Assuming that image files are named sequentially (e.g., frame_1.png, frame_2.png, ...)
+        
+
+         # Play button
+        if col1.button('Play') or frame_index == 0:
+            # Show the GIF when the button is pressed
+            gif_path = f"Gifs/corner_animation_1_{player_name}_{opp_name}.gif"
+            st.image(gif_path, use_column_width=True)
+
+        elif frame_index >= 1:
+            image_path = f"finished_animation_figures/{frame_index}.png"
+            st.image(image_path, use_column_width=True)
 
 
 def page4():
@@ -211,6 +238,7 @@ st.set_page_config(layout="wide")
 update_start_time()
 download_track_data()
 
+# Could be replaced by a function which looked for all the files in the directory, extracted the names and then returned the set of them.
 players   = ['Emil','Ana','Bot']
 opponents = ['Ana','Emil','Bot']
 
