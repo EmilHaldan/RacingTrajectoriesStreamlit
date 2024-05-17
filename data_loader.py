@@ -165,24 +165,6 @@ def transform_coordinates(original_df, rotation_angle = 45.1,
     shift_x, shift_y: shifting values for the x and y axes.
     center_x, center_y: the center point around which rotation is performed.
 
-    Default values:
-    
-    rotation_angle = 44.8 # More is left, less is to the right
-    scale_x = 0.00001397
-    scale_y = 0.000009045
-    shift_x = 6.940328
-    shift_y = 50.3307159
-    center_x = 0
-    center_y = 0
-
-    rotation_angle = 45.3 # More is left, less is to the right
-    scale_x = 0.00001414
-    scale_y = 0.000008989
-    shift_x = 6.940317
-    shift_y = 50.33072324
-    center_x = 0
-    center_y = 0
-
     ### THIS  appears to be the best transformation ####
     rotation_angle = 45.15 # More is left, less is to the right
     scale_x = 0.00001406
