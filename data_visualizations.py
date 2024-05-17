@@ -33,12 +33,20 @@ def plot_track(cur_lap_df, opp_lap_df,
 
     opp_informative_points = extract_key_points(opp_lap_df)
     
-    opp_max_speed_points = opp_informative_points[opp_informative_points['Description'].str.contains("Max Speed")].reset_index(drop=True)
-    opp_min_speed_points = opp_informative_points[opp_informative_points['Description'].str.contains("Min Speed")].reset_index(drop=True)
+    if len(opp_informative_points) > 0:
+        opp_max_speed_points = opp_informative_points[opp_informative_points['Description'].str.contains("Max Speed")].reset_index(drop=True)
+        opp_min_speed_points = opp_informative_points[opp_informative_points['Description'].str.contains("Min Speed")].reset_index(drop=True)   
+    else:
+        opp_max_speed_points = pd.DataFrame()
+        opp_min_speed_points = pd.DataFrame()
 
     cur_informative_points = extract_key_points(cur_lap_df)
-    cur_max_speed_points = cur_informative_points[cur_informative_points['Description'].str.contains("Max Speed")].reset_index(drop=True)
-    cur_min_speed_points = cur_informative_points[cur_informative_points['Description'].str.contains("Min Speed")].reset_index(drop=True)
+    if len(cur_informative_points) > 0:
+        cur_max_speed_points = cur_informative_points[cur_informative_points['Description'].str.contains("Max Speed")].reset_index(drop=True)
+        cur_min_speed_points = cur_informative_points[cur_informative_points['Description'].str.contains("Min Speed")].reset_index(drop=True)
+    else:
+        cur_max_speed_points = pd.DataFrame()
+        cur_min_speed_points = pd.DataFrame()
   
 
     speed_bins = range(40, 180, 20)  # Bins for the speed
