@@ -80,7 +80,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             if segment_lat:
                 segment_lat.append(row['Latitude'])
                 segment_lon.append(row['Longitude'])
-                segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed (Km/h): {speed}")
+                segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed: {round(speed,2)} Km/h")
                 fig.add_trace(
                     go.Scattermapbox(
                         lat=segment_lat,
@@ -94,12 +94,12 @@ def plot_track(cur_lap_df, opp_lap_df,
                 )
             segment_lat = [row['Latitude']]
             segment_lon = [row['Longitude']]
-            segment_texts = [f"Timestamp: {timestamp} seconds<br>Speed (Km/h): {speed}"]
+            segment_texts = [f"Timestamp: {timestamp} seconds<br>Speed: {round(speed,2)} Km/h"]
             current_speed_label = color
         else:
             segment_lat.append(row['Latitude'])
             segment_lon.append(row['Longitude'])
-            segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed (Km/h): {speed}")
+            segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed: {round(speed,2)} Km/h")
 
     # Add the last segment
     fig.add_trace(
@@ -128,7 +128,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             if segment_lat:
                 segment_lat.append(row['Latitude'])
                 segment_lon.append(row['Longitude'])
-                segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed (Km/h): {speed}")
+                segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed: {round(speed,2)} Km/h")
                 fig.add_trace(
                     go.Scattermapbox(
                         lat=segment_lat,
@@ -142,12 +142,12 @@ def plot_track(cur_lap_df, opp_lap_df,
                 )
             segment_lat = [row['Latitude']]
             segment_lon = [row['Longitude']]
-            segment_texts = [f"Timestamp: {timestamp} seconds<br>Speed (Km/h): {speed}"]
+            segment_texts = [f"Timestamp: {timestamp} seconds<br>Speed: {round(speed,2)} Km/h"]
             current_speed_label = color
         else:
             segment_lat.append(row['Latitude'])
             segment_lon.append(row['Longitude'])
-            segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed (Km/h): {speed}")
+            segment_texts.append(f"Timestamp: {timestamp} seconds<br>Speed: {round(speed,2)} Km/h")
 
     # Add the last segment
     fig.add_trace(
@@ -169,7 +169,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lon=opp_max_speed_points['Longitude'],
             mode='markers',
             marker=dict(size=int(size*2.5) ,color="Orange", symbol='circle'), # Doesn't work with 'x', 'square', 'diamond', 'cross', 'triangle', 'triangle-up', 'triangle-down', 'octagon', 'star', 'hexagon', 'diamond-tall', 'hourglass', 'bowtie', 'circle-open', 'circle-dot', 'circle-open-dot'
-            text = opp_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed (Km/h): {x['Speed (Km/h)']}<br>EVENT: {x['Description']}", axis=1),
+            text = opp_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= opponent_name,
             showlegend=False
         )
@@ -182,7 +182,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lon=opp_min_speed_points['Longitude'],
             mode='markers',
             marker=dict(size=int(size*2.5) ,color="Orange", symbol='circle'),
-            text = opp_min_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed (Km/h): {x['Speed (Km/h)']}<br>EVENT: {x['Description']}", axis=1),
+            text = opp_min_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= opponent_name,
             showlegend=False
         )
@@ -195,7 +195,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lon=cur_max_speed_points['Longitude'],
             mode='markers',
             marker=dict(size=int(size*2.5) ,color="Green", symbol='circle'), 
-            text = cur_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed (Km/h): {x['Speed (Km/h)']}<br>EVENT: {x['Description']}", axis=1),
+            text = cur_max_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= player_name,
             showlegend=False
         )
@@ -208,7 +208,7 @@ def plot_track(cur_lap_df, opp_lap_df,
             lon=cur_min_speed_points['Longitude'],
             mode='markers',
             marker=dict(size=int(size*2.5) ,color="Green" , symbol='circle'),
-            text = cur_min_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed (Km/h): {x['Speed (Km/h)']}<br>EVENT: {x['Description']}", axis=1),
+            text = cur_min_speed_points.apply(lambda x: f"Timestamp: {x['Timestamp']} seconds<br>Speed: {round(x['Speed (Km/h)'],2)} Km/h<br>EVENT: {x['Description']}", axis=1),
             name= player_name,
             showlegend=False
         )

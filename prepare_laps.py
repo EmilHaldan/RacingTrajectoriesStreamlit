@@ -68,14 +68,14 @@ def extract_key_points(cur_lap_df):
             longitude_list.append(cur_longitude)
             time_stamp_list.append(cur_time_stamp)
             speed_list.append(cur_speed)
-            description_list.append(f"Max Speed at {cur_speed} Km/h")
+            description_list.append(f"Max Speed at {round(cur_speed,2)} Km/h")
             recorded_row = True
         elif (cur_speed == all_speeds[idx-150:idx+150].min()) and (cur_speed <= all_speeds[idx-150:idx-1].min()) and (cur_speed <= all_speeds[idx+1:idx+150].min()) :
             latitude_list.append(cur_latitude)
             longitude_list.append(cur_longitude)
             time_stamp_list.append(cur_time_stamp)
             speed_list.append(cur_speed)
-            description_list.append(f"Min Speed at {cur_speed} Km/h")
+            description_list.append(f"Min Speed at {round(cur_speed,2)} Km/h")
             recorded_row = True
         else:
             recorded_row = False
